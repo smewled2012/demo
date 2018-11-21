@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -41,6 +41,14 @@
                 <td th:text="${flight.arrival}"></td>
                 <td th:text="${'$' + flight.price}"></td>
                 <td th:text="${flight.aircraft}"></td>
+
+                <td >
+                    <a type="button" class="btn btn-secondary" th:href="@{/reserveFlight/{id}(id=${flight.id})}">Select</a>
+                </td>
+                <td sec:authorize="isAuthenticated()">
+                    <a sec:authorize="hasAuthority('ADMIN')"
+                       type="button" class="btn btn-secondary" th:href="@{/delete/{id}(id=${flight.id})}">Delete</a>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div th:fragment="menubar">
+<div th:fragment="nav">
 
     <nav class="navbar navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand text-white" href="/">Flight Reservation Demo</a>
@@ -39,9 +39,15 @@
                 <li sec:authorize="isAnonymous()" class="nav-item text-light">
                     <a class="nav-link text-white" href="/register">Register</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item text-light">
+               <li sec:authorize="isAuthenticated()" class="nav-item text-light">
                     <a class="nav-link text-white" href="/logout">Logout</a>
                 </li>
+                <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item text-light">
+                    <a class="nav-link text-white" href="/list">See All Flights </a>
+                </li>
+
+
+
             </ul>
         </div>
     </nav>

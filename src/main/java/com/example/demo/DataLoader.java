@@ -37,14 +37,14 @@ public class DataLoader implements CommandLineRunner {
         Role userRole = roleRepository.findByRole("USER");
 
         User user = new User("JIM", "TOM", "2000-10-10", "Ethiopian",
-                "3013698965", "seme@gmail.com", "password", true, "jim");
+                "3013698965", "hey@google.com", passwordEncoder.encode("password"), true, "admin");
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
 
-//        user = new User("Tom","seme","2000-10-10","Russian",
-//                "3013698965","seme@gmail.com",passwordEncoder.encode("password"),true,"seme");
-//        user.setRoles(Arrays.asList(adminRole));
-//        userRepository.save(user);
+        user = new User("Tom","seme","2000-10-10","Russian",
+                "3013698965","seme@gmail.com",passwordEncoder.encode("password"),true,"seme");
+        user.setRoles(Arrays.asList(userRole));
+        userRepository.save(user);
 
         // ---- initial flights data load
 
