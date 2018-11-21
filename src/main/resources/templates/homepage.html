@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container">
+    <div class="jumbotron">
+
+        <form action=# th:action="@{/saveflight}" th:object="${flight}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-control">
+                <select th:field="*{tripType}">
+                    <option value=" ">Round/One Way</option>
+                    <option th:value="Round_trip"> Round_trip</option>
+                    <option th:value="One_way"> One_way</option>
+                </select>
+            </div>
+            <br/>
+            <div class="form-control">
+                <select th:field="*{tripClass}">
+                    <option value=" ">Class</option>
+                    <option th:value="First_Class"> First</option>
+                    <option th:value="Business_Class"> Business</option>
+                    <option th:value=" Economy_Class"> Economy</option>
+                </select>
+            </div>
+
+
+            <br/>
+
+            <div>
+                <select th:field="*{numPassenger}">
+                    <option value="0">Passengers</option>
+                    <option th:each="i: ${#numbers.sequence(1,100)}" th:value="${i}"
+                            th:text="${i}"></option>
+                </select>
+            </div>
+            <br/>
+
+            <div class="col">
+                From: &nbsp;
+                <select class="form-control" th:field="*{from}">
+                    <option value="">Departure:</option>
+                    <option th:each="airport : ${airports}" th:value="${airport.code}"
+                            th:text="${airport.code}"></option>
+                </select>
+            </div>
+            <br/>
+            <div class="col">
+                To: &nbsp;
+                <select class="form-control" th:field="*{to}">
+                    <option value="">Arrival:</option>
+                    <option th:each="airport : ${airports}" th:value="${airport.code}"
+                            th:text="${airport.code}"></option>
+                </select>
+            </div>
+            <br/>
+            <div>
+                Departure date: &nbsp;
+                <input type="date" th:field="${flight.departure}" name="departure">
+            </div>
+            <br/>
+            <div th:if="${flight.tripType!='One_way'}">
+                Return date: &nbsp;
+                <input type="date" th:field="${flight.arrival}" name="arrival">
+            </div>
+
+            <br/>
+
+            <div>
+
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="base :: footer"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <title>Registration</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base:: nav"></div>
+
+<div class="container bg-light ">
+    <div class="my-5 "></div>
+    <div class="my-4 py-5" align="center">
+
+        <h3 class="text-center pb-3">New User Registration</h3>
+
+
+        <form autocomplete="off" th:action="@{/register}" method="post">
+
+            <div class="form-group row">
+                <label for="firstName" class="col-sm-2 col-form-label">
+                    First Name</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="firstName" name="firstName"
+                           placeholder="First Name" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="lastName" class="col-sm-2 col-form-label">Last Name
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="lastName"
+                           placeholder="Last Name" name="lastName" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="email"
+                           placeholder="Email" name="email" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Phone Number
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="phonenum"
+                           placeholder="Phone number" name="phonenum" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Date of Birth
+                </label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" id="dob"
+                           placeholder="Date of Birth" name="dob" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Citizenship
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="citizenship"
+                           placeholder="Citizenship " name="citizenship" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Username
+                </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="username"
+                           placeholder="Username" name="username" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="password"
+                           placeholder="Password" name="password" value="">
+
+                    </strong></mark>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-outline-success text-blue" role="button">
+                        <strong>Register</strong></button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<nav th:replace="base:: footer"></nav>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    width: 100%;
+    color: #23272b;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar {
+    font-family: Algerian;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 30px;
+}
+
+p {
+    font-family: Algerian;
+}
+
+#gravatar {
+    width: 100px;
+    height: 100px;
+}
+
+.emptySpace {
+    height: 100px;
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(../image/imageflight.jpg);
+
+    background-repeat: no-repeat;
+
+    background-position: center center;
+
+    background-size: cover;
+    font-family: 'Source Sans Pro', sans-serif;
+
+}

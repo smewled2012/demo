@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Title</title>
+<th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container">
+<!--insert webpage content here-->
+</div>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--<meta charset="UTF-8"/>-->
+<!--<title>Title</title>-->
+<!--<th:block th:insert="base :: header"></th:block>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div th:replace="base :: nav"></div>-->
+
+<!--<div class="container">-->
+<!--<div class="jumbotron">-->
+
+<!--<form action=# th:action="@{/process}" th:object="${trip}" method="post">-->
+<!--<input type="text" th:field="*{id}">-->
+
+
+<!--<td>-->
+<!--<div th:field="*{options}">-->
+<!--<select class="form-control">-->
+<!--<option value="">Select Type</option>-->
+<!--<option th:value="${options?.type}"> Round Trip</option>-->
+<!--<option th:value="${options?.type}"> One Way</option>-->
+<!--</select>-->
+<!--</div>-->
+
+<!--<div th:field="*{options}">-->
+<!--<select>-->
+<!--<option value="">Class</option>-->
+<!--<option th:value="${options?.tripClass}"> First</option>-->
+<!--<option th:value="${options?.tripClass}"> Business</option>-->
+<!--<option th:value="${options?.tripClass}"> Economy</option>-->
+<!--</select>-->
+<!--</div>-->
+
+<!--<br/>-->
+<!--<div th:field="*{options}">-->
+<!--<select>-->
+<!--<option value="">Passengers</option>-->
+<!--<option th:value="${options?.numPassenger}"> 1</option>-->
+<!--<option th:value="${options?.numPassenger}"> 2</option>-->
+<!--<option th:value="${options?.numPassenger}"> 3</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--</td>-->
+
+<!--<br/>-->
+
+<!--<div class="col">-->
+<!--From: &nbsp;-->
+<!--<select class="form-control" th:field="*{flights.from}">-->
+<!--<option value="">Departure:</option>-->
+<!--<option th:each="airport : ${airports}" th:value="${airport.code}"-->
+<!--th:text="${airport.code}"></option>-->
+<!--</select>-->
+<!--<br/>-->
+
+<!--To: &nbsp;-->
+<!--<select class="form-control" th:field="*{flights.to}">-->
+<!--<option value="">Arrival:</option>-->
+<!--<option th:each="airport : ${airports}" th:value="${airport.code}"-->
+<!--th:text="${airport.code}"></option>-->
+<!--</select>-->
+<!--</div>-->
+<!--<br/>-->
+
+<!--<div>-->
+<!--Departure date: &nbsp;-->
+<!--<input type="date" th:field="${flights.departure}" name="departure">-->
+<!--</div>-->
+<!--<br/>-->
+<!--<div>-->
+<!--Return date: &nbsp;-->
+<!--<input type="date" th:field="${flights.arrival}" name="arrival">-->
+<!--</div>-->
+<!--<br/>-->
+
+<!--<br/>-->
+
+<!--<div>-->
+<!--<input type="submit" role="button" class="btn btn-primary" value="Submit"/>-->
+<!--</div>-->
+
+
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div th:replace="base :: footer"></div>-->
+
+<!--</body>-->
+<!--</html>-->
+
