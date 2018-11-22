@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container">
+    <div class="jumbotron">
+
+        <form action=# th:action="@{/addFlight}" th:object="${flight}" method="post">
+
+            <div class="form-group row">
+                <label for="flightNumber" class="col-sm-2 col-form-label">
+                    Flight Number </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="flightNumber" name="flightNumber"
+                           placeholder="Flight_Number" value="">
+                    </strong></mark>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+            From: &nbsp;
+            <select class="form-control" th:field="*{from}">
+                <option value="">Departure:</option>
+                <option th:each="airport : ${airports}" th:value="${airport.code}"
+                        th:text="${airport.name}"></option>
+            </select>
+        </div>
+            <div class="col-sm-4">
+                To: &nbsp;
+                <select class="form-control" th:field="*{to}">
+                    <option value="">Arrival:</option>
+                    <option th:each="airport : ${airports}" th:value="${airport.code}"
+                            th:text="${airport.name}"></option>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <label for="econnomy" class="col-sm-2 col-form-label">
+                    Price Economy_Class  </label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="econnomy" name="priceEconomy"
+                           placeholder="price of Economy_Class flight" value="">
+                    </strong></mark>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="business" class="col-sm-2 col-form-label">
+                    Price Business_Class  </label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="business" name="priceBusiness"
+                           placeholder="price of Business_Class flight" value="">
+                    </strong></mark>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="first" class="col-sm-2 col-form-label">
+                    Price First_Class  </label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="first" name="priceFirstclass"
+                           placeholder="price of First_Class flight" value="">
+                    </strong></mark>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="aircraft" class="col-sm-2 col-form-label">
+                    Aircraft </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="aircraft" name="aircraft"
+                           placeholder="Aircraft" value="">
+                    </strong></mark>
+                </div>
+            </div>
+
+            <div>
+                Departure date: &nbsp;
+                <input type="date" th:field="${flight.departure}" name="departure">
+            </div>
+            <br/>
+            <div>
+                Return date: &nbsp;
+                <input type="date" th:field="${flight.arrival}" name="arrival">
+            </div>
+            <br/>
+
+            <div>
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>
+l>

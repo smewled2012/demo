@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container bg-light">
+3
+    <h2>Flight Reservation</h2>
+
+    <div align="center" th:object="${flight}">
+        <div class="form-group row">
+            <label for="airportFrom" class="col-sm-2 col-form-label col-form-label-sm">From Airport:</label>
+            <div class="col-sm-10">
+                <input type="text" th:value="*{from.name + ' (' + from.code + ')'}" class="form-control form-control-sm" id="airportFrom"
+                       disabled>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="airportTo" class="col-sm-2 col-form-label col-form-label-sm">To Airport:</label>
+            <div class="col-sm-10">
+                <input type="text" th:value="*{to.name + ' (' + to.code + ')'}" class="form-control form-control-sm" id="airportTo"
+                       disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="flightDate" class="col-sm-2 col-form-label col-form-label-sm">Date:</label>
+            <div class="col-sm-10">
+                <input type="text" th:value="*{departure + ' -> ' + arrival}" class="form-control form-control-sm" id="flightDate"
+                       disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="flightPrice" class="col-sm-2 col-form-label col-form-label-sm">Prices:</label>
+            <div class="col-sm-10">
+                <input type="text" th:value="*{'Economy: $' + priceEconomy + ', Business: $' + priceBusiness + ', First Class: $' + priceFirstclass}" class="form-control form-control-sm" id="flightPrice"
+                       disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="aircraft" class="col-sm-2 col-form-label col-form-label-sm">Aircraft:</label>
+            <div class="col-sm-10">
+                <input type="text" th:value="*{aircraft}" class="form-control form-control-sm" id="aircraft"
+                       disabled>
+            </div>
+        </div>
+    </div></div>
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>
