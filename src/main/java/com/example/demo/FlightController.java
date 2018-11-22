@@ -30,6 +30,9 @@ public class FlightController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PassengerRepository passengerRepository;
+
 
 
     @RequestMapping("/login")
@@ -63,17 +66,13 @@ public class FlightController {
 
         model.addAttribute("airports",airportRepository.findAll());
         model.addAttribute("flight", new Flight());
-
-        if(userService.getUser()!=null){
-            model.addAttribute("user_id",userService.getUser().getId());
-        }
-
+        model.addAttribute("passenger",new Passenger());
 
         return "homepage";
     }
 
     @PostMapping("/saveflight")
-    public String saveFlight(@ModelAttribute("flight") Flight flight, BindingResult result, Model model ){
+    public String saveFlight(@ModelAttribute("flight") Flight flight, Passenger passenger, BindingResult result, Model model ){
 
        // flightRepository.save(flight);
 
@@ -84,6 +83,8 @@ public class FlightController {
         List<User> users= new ArrayList<>();
 
         users.add(userService.getUser());
+
+        flight.setPassenger(passenger);
 
         flight.setUsers(users);
 
@@ -107,10 +108,11 @@ public class FlightController {
         return "list";
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/allflight")
     public String seeAllFlights(Model model, Principal principal){
 
         User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
+     //   Passenger currenPassenger = principal != null ? PassengerRepository.findById(id) : null;
         model.addAttribute("user", currentUser);
 
         model.addAttribute("flights", flightRepository.findAll());
@@ -124,48 +126,35 @@ public class FlightController {
         User currentUser = userRepository.findByUsername(principal.getName());
         model.addAttribute("user", currentUser);
         model.addAttribute("flight", new Flight());
+        model.addAttribute("airports",airportRepository.findAll());
         return "addFlight";
     }
 
-    @PostMapping("/processFlight")
+    @PostMapping("/addFlight")
     public String processFlight(@Valid Flight flight, BindingResult result, Model model, Principal principal) {
+
         if (result.hasErrors()) {
-            // -- This is to prevent "Welcome null" message in the header
             User currentUser = userRepository.findByUsername(principal.getName());
             model.addAttribute("user", currentUser);
-
             return "addFlight";
         }
-
         flightRepository.save(flight);
-        return "redirect:/";
+        return "redirect:/allflight";
     }
 
     @GetMapping("/reserveFlight/{flightId}")
     public String reserveFlight(@PathVariable("flightId") Long flightId, Model model, Principal principal) {
-       // Flight flight = flightRepository.findById(flightId).get();
-        // User currentUser = principal != null ? userService.findByUsername(principal.getName()) : null;
-       /// model.addAttribute("user", currentUser);
-       model.addAttribute("user",new User());
-
-        if(userService.getUser()!=null){
-            model.addAttribute("user_id",userService.getUser().getId());
-        }
-
-        model.addAttribute("flight", flightRepository.findById(flightId).get());
+       //model.addAttribute("passenger", PassengerRepository.findById(flightId).get());
+       model.addAttribute("flight", flightRepository.findById(flightId).get());
+       model.addAttribute("passenger",new Passenger());
 
         return "bookingform";
     }
 
-
     @PostMapping("/processbook")
-    public String saveBooking(@ModelAttribute("user")User user, Model model){
+    public String saveBooking(@ModelAttribute("passenger")Passenger passenger){
 
-
-        if(userService.getUser()!=null){
-            model.addAttribute("user_id",userService.getUser().getId());
-        }
-        userService.saveUser(user);
+        passengerRepository.save(passenger);
         return "test";
 
     }

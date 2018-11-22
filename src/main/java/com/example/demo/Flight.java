@@ -26,14 +26,17 @@ public class Flight {
     private String arrival;
     //    private Date arrival;
     private Integer duration;
-    private Double price;
+    private Double priceEconomy;
+    private Double priceBusiness;
+    private Double priceFirstclass;
     private String aircraft;
-    private String tripClass;
-    private int numPassenger;
-    private String tripType;
+
 
     @ManyToMany
     private List<User> users;
+
+    @OneToOne
+    private Passenger passenger;
 
     public Flight() {
 
@@ -41,18 +44,17 @@ public class Flight {
     }
 
     public Flight(String flightNumber, Airport from, Airport to, String departure, String arrival,
-                  Integer duration, Double price, String aircraft, String tripClass, int numPassenger, String tripType) {
+                  Integer duration, Double priceEconomy, Double priceBusiness, Double priceFirstclass, String aircraft) {
         this.flightNumber = flightNumber;
         this.from = from;
         this.to = to;
         this.departure = departure;
         this.arrival = arrival;
         this.duration = duration;
-        this.price = price;
+        this.priceEconomy = priceEconomy;
+        this.priceBusiness = priceBusiness;
+        this.priceFirstclass = priceFirstclass;
         this.aircraft = aircraft;
-        this.tripClass = tripClass;
-        this.numPassenger = numPassenger;
-        this.tripType = tripType;
     }
 
     public long getId() {
@@ -87,38 +89,6 @@ public class Flight {
         this.to = to;
     }
 
-    public String getTripClass() {
-        return tripClass;
-    }
-
-    public void setTripClass(String tripClass) {
-        this.tripClass = tripClass;
-    }
-
-    public int getNumPassenger() {
-        return numPassenger;
-    }
-
-    public void setNumPassenger(int numPassenger) {
-        this.numPassenger = numPassenger;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getTripType() {
-        return tripType;
-    }
-
-    public void setTripType(String tripType) {
-        this.tripType = tripType;
-    }
-
     public String getDeparture() {
         return departure;
     }
@@ -143,7 +113,29 @@ public class Flight {
         this.duration = duration;
     }
 
+    public Double getPriceEconomy() {
+        return priceEconomy;
+    }
 
+    public void setPriceEconomy(Double priceEconomy) {
+        this.priceEconomy = priceEconomy;
+    }
+
+    public Double getPriceBusiness() {
+        return priceBusiness;
+    }
+
+    public void setPriceBusiness(Double priceBusiness) {
+        this.priceBusiness = priceBusiness;
+    }
+
+    public Double getPriceFirstclass() {
+        return priceFirstclass;
+    }
+
+    public void setPriceFirstclass(Double priceFirstclass) {
+        this.priceFirstclass = priceFirstclass;
+    }
 
     public String getAircraft() {
         return aircraft;
@@ -159,5 +151,12 @@ public class Flight {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 }

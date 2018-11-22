@@ -43,10 +43,11 @@
                     <a class="nav-link text-white" href="/logout">Logout</a>
                 </li>
                 <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item text-light">
-                    <a class="nav-link text-white" href="/list">See All Flights </a>
+                    <a class="nav-link text-white" href="/allflight">See All Flights </a>
                 </li>
-
-
+                <li  sec:authorize="hasAuthority('ADMIN')" class="nav-item text-light">
+                    <a class="nav-link text-white" href="/addFlight">ADD Flight </a>
+                </li>
 
             </ul>
         </div>

@@ -63,13 +63,13 @@ public class DataLoader implements CommandLineRunner {
 
         // Inserting flight information data to the database
 
-        flightRepository.save(new Flight("F2501", jfk, fll, "2018-11-19", "2018-11-19", 180, 500.0, "A321","Economy",4,"One-Way"));
-        flightRepository.save(new Flight("F2501", jfk, fll, "2018-11-20", "2018-11-20", 181, 119.0, "A321","First Class",1,"Round Trip"));
-        flightRepository.save(new Flight("F9011", jfk, fll, "2018-11-19", "2018-11-19", 195,  494.0, "A320","Business Class",2,"One-Way"));
-        flightRepository.save(new Flight("F9011", jfk, fll, "2018-11-20", "2018-11-20", 200,  494.0, "A320","Economy",2,"One-Way"));
-        flightRepository.save(new Flight("F3513", atl, ord, "2018-11-20", "2018-11-20", 108,  234.0, "E75L","First Class",6,"One-Way"));
-        flightRepository.save(new Flight("F4978", ord, jfk, "2018-11-20", "2018-11-20", 180,  515.8, "E75L","Economy",4,"One-Way"));
-        flightRepository.save(new Flight("F0570", jfk, lax, "2018-11-20", "2018-11-20", 200,  634.0, "B763","Business Class",4,"One-Way"));
-
+        flightRepository.save(new Flight("F2501", jfk, fll, "2018-11-19", "2018-11-19", 180, 120.2, 500.0, 550.0, "A321"));
+        flightRepository.save(new Flight("F2501", jfk, fll, "2018-11-20", "2018-11-20", 181, 119.0, 481.2, 510.0, "A321"));
+        flightRepository.save(new Flight("F9011", jfk, fll, "2018-11-19", "2018-11-19", 195, 110.2, 494.0, 526.0, "A320"));
+        flightRepository.save(new Flight("F9011", jfk, fll, "2018-11-20", "2018-11-20", 200, 110.2, 494.0, 560.0, "A320"));
+        flightRepository.save(new Flight("F3513", atl, ord, "2018-11-20", "2018-11-20", 108, 90.9, 234.0, 300.0, "E75L"));
+        flightRepository.save(new Flight("F4978", ord, jfk, "2018-11-20", "2018-11-20", 180, 134.0, 515.8, 580.0, "E75L"));
+        flightRepository.save(new Flight("F0570", jfk, lax, "2018-11-20", "2018-11-20", 200, 145.8, 634.0, 690.0, "B763"));
+        flightRepository.save(new Flight("F0571", lax, jfk, "2018-11-20", "2018-11-20", 200, 150.8, 650.0, 710.0, "B763"));
     }
 }
