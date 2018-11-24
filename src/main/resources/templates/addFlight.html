@@ -13,12 +13,13 @@
     <div class="jumbotron">
 
         <form action=# th:action="@{/addFlight}" th:object="${flight}" method="post">
+            <input type="hidden" th:field="*{id}">
 
-            <div class="form-group row">
+           <div class="form-group row">
                 <label for="flightNumber" class="col-sm-2 col-form-label">
                     Flight Number </label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="flightNumber" name="flightNumber"
+                    <input type="text"  class="form-control" id="flightNumber" name="flightNumber"
                            placeholder="Flight_Number" value="">
                     </strong></mark>
                 </div>
@@ -46,6 +47,7 @@
                     Price Economy_Class  </label>
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="econnomy" name="priceEconomy"
+                           th:field="${flight.priceEconomy}"
                            placeholder="price of Economy_Class flight" value="">
                     </strong></mark>
                 </div>
@@ -55,7 +57,8 @@
                     Price Business_Class  </label>
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="business" name="priceBusiness"
-                           placeholder="price of Business_Class flight" value="">
+                           placeholder="price of Business_Class flight"
+                           th:field="${flight.priceBusiness}"value="">
                     </strong></mark>
                 </div>
             </div>
@@ -64,6 +67,7 @@
                     Price First_Class  </label>
                 <div class="col-sm-4">
                     <input type="number" class="form-control" id="first" name="priceFirstclass"
+                           th:field="${flight.priceFirstclass}"
                            placeholder="price of First_Class flight" value="">
                     </strong></mark>
                 </div>
@@ -74,7 +78,7 @@
                 <label for="aircraft" class="col-sm-2 col-form-label">
                     Aircraft </label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="aircraft" name="aircraft"
+                    <input type="text" th:field="${flight.aircraft}" class="form-control" id="aircraft" name="aircraft"
                            placeholder="Aircraft" value="">
                     </strong></mark>
                 </div>

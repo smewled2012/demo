@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -28,6 +28,7 @@
                 <th scope="col">Dep. Date</th>
                 <th scope="col">Arr. Date</th>
                 <th scope="col">Aircraft</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -39,6 +40,13 @@
                 <td th:text="${flight.departure}"></td>
                 <td th:text="${flight.arrival}"></td>
                 <td th:text="${flight.aircraft}"></td>
+
+
+                <td>
+                    <a th:href="@{/delete/{id}(id=${flight.id})}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger" role="button">Cancel</a>
+                </td>
+
+
             </tr>
             </tbody>
         </table>

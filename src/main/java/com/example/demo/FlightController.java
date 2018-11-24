@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -71,34 +72,16 @@ public class FlightController {
         return "homepage";
     }
 
-    @PostMapping("/saveflight")
-    public String saveFlight(@ModelAttribute("flight") Flight flight, Passenger passenger, BindingResult result, Model model ){
+    @RequestMapping("/search")
+    public String saveFlight(@RequestParam String from, @RequestParam String to, Date departure, Date arrival, BindingResult result, Model model ){
 
+        List<Flight> flights= flightRepository.findByFrom_CodeAndTo_Code( from,  to);
        // flightRepository.save(flight);
 
         if(result.hasErrors()){
             return "homepage";
         }
 
-        List<User> users= new ArrayList<>();
-
-        users.add(userService.getUser());
-
-        flight.setPassenger(passenger);
-
-        flight.setUsers(users);
-
-    // see the list all available
-
-      //  model.addAttribute("flights", flightRepository.findAll());
-
-        ArrayList<Flight> flights = new ArrayList<>();
-        for (Flight flight1 : flightRepository.findAll()) {
-            if (flight1.getFrom().getCode().equals(flight.getFrom().getCode()) &&
-                    flight1.getTo().getCode().equals(flight.getTo().getCode())) {
-                flights.add(flight1);
-            }
-        }
 
         model.addAttribute("flightOptions", flights);
 
@@ -158,6 +141,15 @@ public class FlightController {
         return "test";
 
     }
+
+    @RequestMapping("/delete/{id}")
+    public String delFlight(@PathVariable("id") long id) {
+
+        flightRepository.deleteById(id);
+        return "allflights";
+    }
+
+
 
 //    @RequestMapping (value="/formation/qr/{id}", method = RequestMethod.GET)
 //    public HttpEntity<byte[]> qr(@PathVariable Long id) {
