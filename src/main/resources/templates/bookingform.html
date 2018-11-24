@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <th:block th:insert="base :: header"></th:block>
+<meta charset="UTF-8" />
+<title>Title</title>
+<th:block th:insert="base :: header"></th:block>
 </head>
 <body>
 
-<div th:replace="base :: nav"></div>
+	<div th:replace="base :: nav"></div>
 
-<div class="container bg-light">
-    <h2>Flight Reservation Form </h2>
+	<div class="container bg-light">
+		<h2>Flight Reservation Form</h2>
 
-</div>
+	</div>
 
-<div class="form-group">
-    <strong>Departure From: </strong> <span th:text="${flight.from.code}"></span><br/>
-    <strong>Arrival To: </strong><span th:text="${flight.to.code}"></span><br/>
-    <strong>Departure Date: </strong><span th:text="${flight.departure}"></span><br/>
-    <strong>Arrival Date: </strong><span th:text="${flight.arrival}"></span><br/>
+	<div class="form-group">
+		Flight 1 <strong>Departure From: </strong> <span
+			th:text="${fromFlight.from.code}"></span><br /> <strong>Arrival
+			To: </strong><span th:text="${fromFlight.to.code}"></span>
+		<p>
+			<label>Total Price</label> : [[${fromFlight.totalPrice}]]
+		</p>
+		<br />
+	</div>
+	<div class="form-group" th:if=${null!=toFlight}>
+		Flight 2 <strong>Departure From: </strong> <span
+			th:text="${toFlight.from.code}"></span><br /> <strong>Arrival
+			To: </strong><span th:text="${toFlight.to.code}"></span><br />
+		<!--  <strong>Departure Date: </strong><span th:text="${flight.departure}"></span><br/>
+    <strong>Arrival Date: </strong><span th:text="${flight.arrival}"></span><br/> -->
 
-</div>
+	</div>
 
-<div class="container-fluid">
+	<div class="container-fluid">
 
-    <form action="#" th:action="@{/processbook}" th:object="${passenger}" method="post">
+		<!--  <form action="#" th:action="@{/processbook}" th:object="${passenger}" method="post">
         <input type="hidden" th:field="*{id}">
 
         <div class="form-group row">
@@ -95,9 +105,9 @@
 
 
     </form>
-
-</div>
-<div th:replace="base :: footer"></div>
+ -->
+	</div>
+	<div th:replace="base :: footer"></div>
 
 </body>
 </html>

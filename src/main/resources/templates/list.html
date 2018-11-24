@@ -1,56 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <th:block th:insert="base :: header"></th:block>
+<meta charset="UTF-8" />
+<title>Title</title>
+<th:block th:insert="base :: header"></th:block>
 </head>
 <body>
 
-<div th:replace="base :: nav"></div>
+	<div th:replace="base :: nav"></div>
 
-<div class="container">
-    <h1 class="text-center">Welcome to Flights Reservation Demo!</h1>
-</div>
+	<div class="container">
+		<h1 class="text-center">Welcome to Flights Reservation Demo!</h1>
+	</div>
 
-<div class="container">
+	<div class="container">
 
-    <h3 class="text-center py-3 pl-4 pr-5"> Flights</h3>
+		<h3 class="text-center py-3 pl-4 pr-5">Flights</h3>
+		<input type="hidden" th:value="${tripType}" name="tripType"> <input
+			type="hidden" th:value="${numberOfPassengers}"
+			name="numberOfPassengers">
 
-    <div align="center">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col">Dep. Date</th>
-                <th scope="col">Arr. Date</th>
-                <th scope="col">Aircraft</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="flight: ${flightOptions}">
-                <td th:text="${flight.id}"></td>
-                <td th:text="${flight.flightNumber}"></td>
-                <td th:text="${flight.from.code}"></td>
-                <td th:text="${flight.to.code}"></td>
-                <td th:text="${flight.departure}"></td>
-                <td th:text="${flight.arrival}"></td>
-                <td th:text="${flight.aircraft}"></td>
+		<div align="center">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col"></th>
+						<th scope="col">From</th>
+						<th scope="col">To</th>
+						<th scope="col">Dep. Date</th>
+						<th scope="col">Arr. Date</th>
+						<th scope="col">Aircraft</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="flight: ${flightOptions}">
+						<td th:text="${flight.id}"></td>
+						<td th:text="${flight.flightNumber}"></td>
+						<td th:text="${flight.from.code}"></td>
+						<td th:text="${flight.to.code}"></td>
+						<td th:text="${flight.departure}"></td>
+						<td th:text="${flight.arrival}"></td>
+						<td th:text="${flight.aircraft}"></td>
+						<td th:if="${tripType == 'one_way'}"><a type="button"
+							class="btn btn-secondary"
+							th:href="@{/reserveFlight(fromSelection=${flight.id}, numberOfPassengers=${numberOfPassengers}, flightClass=${flightClass})}">Select</a></td>
+						<td th:if="${tripType == 'round_trip' && fromSelection==null}"><a
+							type="button" class="btn btn-secondary"
+							th:href="@{/search(fromSelection=${flight.id},from=${to},to=${from},departure=${arrival},tripType='round_trip',numberOfPassengers=${numberOfPassengers}, flightClass=${flightClass})}">Select</a></td>
+						<td th:if="${tripType == 'round_trip'  && fromSelection!=null}"><a
+							type="button" class="btn btn-secondary"
+							th:href="@{/reserveFlight(fromSelection=${fromSelection},toSelection=${flight.id}, numberOfPassengers=${numberOfPassengers}, flightClass=${flightClass})}">Select</a></td>
 
-                <td >
-                    <a type="button" class="btn btn-secondary" th:href="@{/reserveFlight/{id}(id=${flight.id})}">Select</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-</div>
+	</div>
 
-<div th:replace="base :: footer"></div>
+	<div th:replace="base :: footer"></div>
 
 </body>
 </html>
