@@ -14,8 +14,8 @@
 
 			<form action=# th:action="@{/search}" th:object="${flight}"
 				method="get">
-				<input type="hidden" th:field="*{id}"> <input type="hidden"
-					name="tripType" />
+				<input type="hidden" th:field="*{id}">
+				<input type="hidden" name="tripType" />
 
 				<div>
 					<button id="one-way" class="btn flight-type" type="button">One
@@ -54,9 +54,9 @@
 						name="departure">
 				</div>
 				<br />
-				<div>
+				<div id="return-date">
 					Return date: &nbsp; <input type="text" class="date-picker"
-						id="return-date" th:field="${flight.arrival}" name="arrival">
+						 th:field="${flight.arrival}" name="arrival">
 				</div>
 				<br />
 				<div>

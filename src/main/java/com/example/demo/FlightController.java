@@ -1,10 +1,18 @@
 package com.example.demo;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -113,6 +121,8 @@ public class FlightController {
 
 	}
 
+
+
 	@GetMapping("/addFlight")
 	public String addFlight(Model model, Principal principal) {
 		User currentUser = userRepository.findByUsername(principal.getName());
@@ -139,27 +149,53 @@ public class FlightController {
 			Model model, Principal principal, @RequestParam int numberOfPassengers,
 			@RequestParam FlightClass flightClass) {
 		Flight fromFlight = flightRepository.findById(fromSelection).get();
-		fromFlight.setNumberOfPassengers(numberOfPassengers);
-		fromFlight.setFlightClass(flightClass);
-		Flight toFlight;
-		model.addAttribute("fromFlight", fromFlight);
-		if (null != toSelection) {
-			toFlight = flightRepository.findById(toSelection).get();
-			toFlight.setNumberOfPassengers(numberOfPassengers);
+			fromFlight.setNumberOfPassengers(numberOfPassengers);
+			fromFlight.setFlightClass(flightClass);
+			Flight toFlight;
+			model.addAttribute("fromFlight", fromFlight);
+			if (null != toSelection) {
+				toFlight = flightRepository.findById(toSelection).get();
+				toFlight.setNumberOfPassengers(numberOfPassengers);
 			toFlight.setFlightClass(flightClass);
 			model.addAttribute("toFlight", toFlight);
 		}
+
+		model.addAttribute("passenger", new Passenger());
 
 		return "bookingform";
 	}
 
 	@PostMapping("/processbook")
-	public String saveBooking(@ModelAttribute("passenger") Passenger passenger) {
+	public String saveBooking(@ModelAttribute("passenger") Passenger passenger) throws IOException, WriterException {
 
 		passengerRepository.save(passenger);
+
+		String firstName = passenger.getFirstName();
+		String lastName  = passenger.getLastName();
+		String email = passenger.getEmail();
+		//String flight11 = passenger.getFlight();
+		//String flightnum= flightRepository.findById(id).get().getFlightNumber();
+		//String flightfrom = flight.getFrom().getName();
+	//	String flightto = flight.getTo().getName();
+// concatenate the strings
+		String fullinformation  = firstName + lastName +email;
+
+		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\smewl\\Desktop\\QrCode\\MyQRCode.png");
+
+
 		return "test";
 
 	}
+
+	private static void generateQRCodeImage(String text, int width, int height, String filePath)
+			throws WriterException, IOException {
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+		BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
+
+		Path path = FileSystems.getDefault().getPath(filePath);
+		MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+	}
+
 
 	@RequestMapping("/delete/{id}")
 	public String delFlight(@PathVariable("id") long id) {

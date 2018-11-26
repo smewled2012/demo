@@ -15,18 +15,20 @@
 	</div>
 
 	<div class="form-group">
-		Flight 1 <strong>Departure From: </strong> <span
-			th:text="${fromFlight.from.code}"></span><br /> <strong>Arrival
-			To: </strong><span th:text="${fromFlight.to.code}"></span>
+		<strong>Flight-1 </strong> <br />
+		<strong>Departure From: </strong> <span
+			th:text="${fromFlight.from.name}"></span><br /> <strong>
+		Arrival To: </strong><span th:text="${fromFlight.to.name}"></span>
 		<p>
 			<label>Total Price</label> : [[${fromFlight.totalPrice}]]
 		</p>
 		<br />
 	</div>
 	<div class="form-group" th:if=${null!=toFlight}>
-		Flight 2 <strong>Departure From: </strong> <span
-			th:text="${toFlight.from.code}"></span><br /> <strong>Arrival
-			To: </strong><span th:text="${toFlight.to.code}"></span><br />
+		<strong>Flight-2 </strong><br />
+		<strong>Departure From: </strong> <span
+			th:text="${toFlight.from.name}"></span><br />
+		<strong>Arrival To: </strong><span th:text="${toFlight.to.name}"></span><br />
 		<!--  <strong>Departure Date: </strong><span th:text="${flight.departure}"></span><br/>
     <strong>Arrival Date: </strong><span th:text="${flight.arrival}"></span><br/> -->
 
@@ -34,29 +36,29 @@
 
 	<div class="container-fluid">
 
-		<!--  <form action="#" th:action="@{/processbook}" th:object="${passenger}" method="post">
-        <input type="hidden" th:field="*{id}">
+		<form action="#" th:action="@{/processbook}" th:object="${passenger}" method="post">
+			<input type="hidden" th:field="*{id}">
 
-        <div class="form-group row">
-            <label for="firstName" class="col-sm-2 col-form-label">
-                &nbsp;&nbsp; First_Name</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="firstName" name="firstName"
-                       placeholder="First Name" value="">
-                </strong></mark>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="lastName" class="col-sm-2 col-form-label"> &nbsp;&nbsp;Last_Name</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="lastName"
-                       placeholder="Last Name" name="lastName" value="">
-                </strong></mark>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="dob" class="col-sm-2 col-form-label ">&nbsp;&nbsp;Date of Birth:</label>
-            <div class="col-sm-6">
+			<div class="form-group row">
+				<label for="firstName" class="col-sm-2 col-form-label">
+					&nbsp;&nbsp; First_Name</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="firstName" name="firstName"
+						   placeholder="First Name" value="">
+					</strong></mark>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="lastName" class="col-sm-2 col-form-label"> &nbsp;&nbsp;Last_Name</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="lastName"
+						   placeholder="Last Name" name="lastName" value="">
+					</strong></mark>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="dob" class="col-sm-2 col-form-label ">&nbsp;&nbsp;Date of Birth:</label>
+				<div class="col-sm-6">
                 <input type="date" class="form-control " id="dob"
                        placeholder="Date of Birth" name="dob">
             </div>
@@ -75,37 +77,37 @@
                        placeholder="Phone number " name="phonenum">
             </div>
         </div>
-        <div class="form-group row">
-            <select th:field="*{tripType}" class="col-sm-4">
-                <option value=" ">Round/One Way</option>
-                <option th:value="Round_trip"> Round_trip</option>
-                <option th:value="One_way"> One_way</option>
-            </select>
-        </div>
-        <br/>
-        <div class="form-group row">
-            <select th:field="*{tripClass}" class="col-sm-4">
-                <option value=" ">Class</option>
-                <option th:value="First_Class"> First</option>
-                <option th:value="Business_Class"> Business</option>
-                <option th:value=" Economy_Class"> Economy</option>
-            </select>
-        </div>
-        <br/>
-        <div class="form-group row">
-            <select th:field="*{numPassenger}" class="col-sm-4">
-                <option value="0">Passengers</option>
-                <option th:each="i: ${#numbers.sequence(1,100)}" th:value="${i}"
-                        th:text="${i}"></option>
-            </select>
-        </div>
+        <!--<div class="form-group row">-->
+            <!--<select th:field="*{tripType}" class="col-sm-4">-->
+                <!--<option value=" ">Round/One Way</option>-->
+                <!--<option th:value="Round_trip"> Round_trip</option>-->
+                <!--<option th:value="One_way"> One_way</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="form-group row">-->
+            <!--<select th:field="*{tripClass}" class="col-sm-4">-->
+                <!--<option value=" ">Class</option>-->
+                <!--<option th:value="First_Class"> First</option>-->
+                <!--<option th:value="Business_Class"> Business</option>-->
+                <!--<option th:value=" Economy_Class"> Economy</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="form-group row">-->
+            <!--<select th:field="*{numPassenger}" class="col-sm-4">-->
+                <!--<option value="0">Passengers</option>-->
+                <!--<option th:each="i: ${#numbers.sequence(1,100)}" th:value="${i}"-->
+                        <!--th:text="${i}"></option>-->
+            <!--</select>-->
+        <!--</div>-->
         <div>
             <input type="submit" class="btn btn-primary" value="Submit"/>
         </div>
 
 
     </form>
- -->
+
 	</div>
 	<div th:replace="base :: footer"></div>
 
