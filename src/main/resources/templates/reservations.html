@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container">
+    <h1 class="text-center">Welcome to Flights Reservation Demo!</h1>
+</div>
+
+<div class="container">
+    <h1> To see the history of a single user </h1>
+</div>
+
+
+<div th:if="${param.logout}" class="alert alert-info" role="alert">
+    You have been logged out
+</div>
+
+
+<!--<div class="container">-->
+    <!--<h3 class="text-center py-3 pl-4 pr-5">Your Reservations</h3>-->
+
+    <!--<div align="center">-->
+        <!--<table class="table table-hover">-->
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th scope="col"></th>-->
+                <!--<th scope="col"></th>-->
+                <!--<th scope="col">From</th>-->
+                <!--<th scope="col">To</th>-->
+                <!--<th scope="col">Dep. Time</th>-->
+                <!--<th scope="col">Arr. Time</th>-->
+                <!--<th scope="col">Aircraft</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr th:each="user: ${users}">-->
+                <!--<td th:each=" flight: ${flights}"> </td>-->
+
+                <!--<td th:text="${flight.id}"></td>-->
+                <!--<td th:text="${flight.flightNumber}"></td>-->
+                <!--<td th:text="${flight.from.code}"></td>-->
+                <!--<td th:text="${flight.to.code}"></td>-->
+                <!--<td th:text="${flight.departure}"></td>-->
+                <!--<td th:text="${flight.arrival}"></td>-->
+                <!--<td th:text="${flight.aircraft}"></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div th:replace="base :: footer"></div>
+
+</body>
+</html>
