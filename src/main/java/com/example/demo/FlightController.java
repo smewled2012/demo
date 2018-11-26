@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -121,8 +122,6 @@ public class FlightController {
 
 	}
 
-
-
 	@GetMapping("/addFlight")
 	public String addFlight(Model model, Principal principal) {
 		User currentUser = userRepository.findByUsername(principal.getName());
@@ -147,7 +146,8 @@ public class FlightController {
 	@GetMapping("/reserveFlight")
 	public String reserveFlight(@RequestParam Long fromSelection, @RequestParam(required = false) Long toSelection,
 			Model model, Principal principal, @RequestParam int numberOfPassengers,
-			@RequestParam FlightClass flightClass) {
+			@RequestParam FlightClass flightClass)
+	{
 		Flight fromFlight = flightRepository.findById(fromSelection).get();
 			fromFlight.setNumberOfPassengers(numberOfPassengers);
 			fromFlight.setFlightClass(flightClass);
@@ -159,6 +159,7 @@ public class FlightController {
 			toFlight.setFlightClass(flightClass);
 			model.addAttribute("toFlight", toFlight);
 		}
+		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
 
 		model.addAttribute("passenger", new Passenger());
 
@@ -182,7 +183,6 @@ public class FlightController {
 
 		generateQRCodeImage(fullinformation,350,300,"C:\\Users\\smewl\\Desktop\\QrCode\\MyQRCode.png");
 
-
 		return "test";
 
 	}
@@ -196,6 +196,15 @@ public class FlightController {
 		MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
 	}
 
+	@GetMapping("/reservations")
+	public String seeReservation(Model model, Principal principal){
+
+		User currentUser = principal != null ? userRepository.findByUsername(principal.getName()) : null;
+		//model.addAttribute("users",userRepository.findAll());
+
+		return "reservations";
+	}
+
 
 	@RequestMapping("/delete/{id}")
 	public String delFlight(@PathVariable("id") long id) {
@@ -204,14 +213,5 @@ public class FlightController {
 		return "allflights";
 	}
 
-	// @RequestMapping (value="/formation/qr/{id}", method = RequestMethod.GET)
-	// public HttpEntity<byte[]> qr(@PathVariable Long id) {
-	// byte[] bytes = QRCode.from(formationRepository.findOne(id).getTheme()
-	// .toString()).withSize(120, 120).stream().toByteArray();
-	// final HttpHeaders headers = new HttpHeaders();
-	// headers.setContentType(MediaType.IMAGE_PNG);
-	// headers.setContentLength(bytes.length);
-	// return new ResponseEntity<byte[]> (bytes, headers, HttpStatus.CREATED);
-	// }
 
 }
